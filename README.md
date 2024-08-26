@@ -7,8 +7,8 @@ which can avoid busy waiting.
 ## Project structure
 ```text
 cl-linux-queue/                        #software name.
-    cl-linux-queue.asd                 #defproject.
-    package.lisp                       #defpackage and export symbol.
+    cl-linux-queue.asd                 #define project.
+    package.lisp                       #define package and export symbol.
     code/                              #source code.
         c-bind.lisp                    #binding for c function
         sys-macro.lisp                 #project macro.
