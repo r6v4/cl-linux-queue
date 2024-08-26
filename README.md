@@ -18,6 +18,12 @@ cl-linux-queue/                        #software name.
         example-2.lisp                 #use project with thread.
 ```
 ## Project loading
+```bash
+#mkdir 12345
+cd 12345 #or other file menu
+#git clone https://github.com/r6v4/cl-linux-queue.git
+#sbcl
+```
 ```common-lisp
 ;require system asdf
 (require :asdf)
@@ -37,5 +43,28 @@ cl-linux-queue/                        #software name.
 ;(ql:quickload :cl-linux-queue)
 
 ```
-## Project Usage
-[main.lisp](https://github.com/r6v4/cl-linux-queue/blob/0aed57515f735c2a28e2965c07f30f82e599762c/test/example-1.lisp#L11)
+## Project usage
+```common-lisp
+;package symbol as current symbol for example
+(in-package :cl-linux-queue)
+;#<PACKAGE "CL-LINUX-QUEUE">
+
+;create mailbox a as message queue
+(setf a (make-mailbox))
+;0
+
+;send message to a
+(send-message a 123) ;0
+(send-message a 321) ;0
+
+;create pointer b to get single message 
+(setf b (cffi:convert-to-foreign '(mtype 1 mtext "00000000") '(:struct msgbuffer)))
+;#.(SB-SYS:INT-SAP #X55D38C702DE0)
+
+;use b to receive message from a
+(receive-message a b) ;123
+(receive-message a b) ;321
+
+(receive-message a b) ;block for no message
+```
+
