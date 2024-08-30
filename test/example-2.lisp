@@ -2,7 +2,7 @@
 
 (in-package :cl-linux-queue)
 
-(setf a (make-mailbox))
+(setf a (make-mailbox 12345))
 
 (setf b (cffi:convert-to-foreign '(mtype 1 mtext "00000000") '(:struct msgbuffer)))
 
