@@ -2,7 +2,7 @@
 
 (in-package :cl-linux-queue) ;#<PACKAGE "CL-LINUX-QUEUE">
 
-(setf a (make-mailbox)) ;0
+(setf a (make-mailbox 12345)) ;0
 
 (send-message a 123) ;0
 (send-message a 321) ;0
