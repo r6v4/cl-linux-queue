@@ -5,4 +5,6 @@
     (:export 
         :make-mailbox
         :send-message
-        :receive-message) )
+        :receive-message
+        :send-message-macro
+        :receive-message-macro) )
