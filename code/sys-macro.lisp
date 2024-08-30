@@ -1,27 +1,21 @@
 (in-package :cl-linux-queue)
 
-(defmacro send-message-m (q m)
-    (let ((a (gensym))
-          (b (gensym)) 
-          (c (gensym))
+(defmacro send-message-m (queue message)
+    (let ((c (gensym))
           (d (gensym)) )
-        `(let ((,a ,q) 
-               (,b ,m) )
+        `(progn
             (setf 
-                ,c (format nil "~8,'0d" ,b)
+                ,c (format nil "~8,'0d" ,message)
                 ,d (cffi:convert-to-foreign (list 'mtype 1 'mtext ,c) '(:struct msgbuffer)) )
-            (msgsnd ,a ,d 8 100) )))
+            (msgsnd ,queue ,d 8 100) )))
 
-(defmacro receive-message-m (q m)
-    (let ((a (gensym))
-          (b (gensym)) 
-          (c (gensym))
+(defmacro receive-message-m (queue pointer)
+    (let ((c (gensym))
           (d (gensym))
           (e (gensym)) )
-        `(let ((,a ,q) 
-               (,b ,m) )
+        `(progn
             (setf 
-                ,c (msgrcv ,a ,b 8 0 100)
-                ,d (cffi:foreign-slot-value ,b '(:struct msgbuffer) 'mtext)
+                ,c (msgrcv ,queue ,pointer 8 0 100)
+                ,d (cffi:foreign-slot-value ,pointer '(:struct msgbuffer) 'mtext)
                 ,e (parse-integer ,d :junk-allowed t) )
             (values ,e))))
