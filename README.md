@@ -39,7 +39,7 @@ cd 12345 #or other file menu
 (asdf:load-system :cl-linux-queue)
 ;T
 
-;or use quickload
+;or use quicklisp to load package
 ;(ql:quickload :cl-linux-queue)
 
 ```
@@ -50,7 +50,7 @@ cd 12345 #or other file menu
 ;#<PACKAGE "CL-LINUX-QUEUE">
 
 ;create mailbox a as message queue
-(setf a (make-mailbox))
+(setf a (make-mailbox 12345))
 ;0
 
 ;send message to a
