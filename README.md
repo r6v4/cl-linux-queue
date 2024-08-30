@@ -68,3 +68,11 @@ cd 12345 #or other file menu
 (receive-message a b) ;block for no message
 ```
 
+## API
+```text
+int make-mailbox (int id);
+int send-message (int place, int message);
+int receive-message (int place, pointer box);
+int send-message-macro (int place, int message);
+int receive-message-macro (int place, pointer box);
+```
