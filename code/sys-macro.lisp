@@ -1,6 +1,6 @@
 (in-package :cl-linux-queue)
 
-(defmacro send-message-m (queue message)
+(defmacro send-message-macro (queue message)
     (let ((c (gensym))
           (d (gensym)) )
         `(progn
@@ -9,7 +9,7 @@
                 ,d (cffi:convert-to-foreign (list 'mtype 1 'mtext ,c) '(:struct msgbuffer)) )
             (msgsnd ,queue ,d 8 100) )))
 
-(defmacro receive-message-m (queue pointer)
+(defmacro receive-message-macro (queue pointer)
     (let ((c (gensym))
           (d (gensym))
           (e (gensym)) )
