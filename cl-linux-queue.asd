@@ -2,7 +2,7 @@
     :name "cl-linux-queue"
     :description "message-queue-use-linux-function"
     :author "r6v4@pm.me"
-    :version 1.1
+    :version "1.1"
     :depends-on ("cffi") 
     :serial t
     :components (
